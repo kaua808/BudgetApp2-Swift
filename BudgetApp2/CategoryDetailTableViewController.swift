@@ -24,10 +24,10 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fillerView.backgroundColor = UIColor(red:0.55, green:0.76, blue:0.29, alpha:1.0)
-        myTableHeaderView.backgroundColor = UIColor(red:0.55, green:0.76, blue:0.29, alpha:1.0)
-        expenseHeaderView.backgroundColor = UIColor(red:0.27, green:0.35, blue:0.39, alpha:1.0)
-        expenseDetailTableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
+        fillerView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
+        myTableHeaderView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
+        expenseHeaderView.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
+        expenseDetailTableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         
         
     // Dismiss Keybaord when view is touched

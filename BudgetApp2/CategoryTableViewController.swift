@@ -22,9 +22,8 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.27, green:0.35, blue:0.39, alpha:1.0)
-        
+        //tableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -32,8 +31,17 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         if let currentUser = UserController.sharedController.currentUser {
             
             loadCategories(currentUser)
-            self.title = currentUser.name
             
+            self.title = "money watcher"
+            
+            //Set Color
+//            let attributes: AnyObject = [ NSForegroundColorAttributeName: UIColor.redColor()]
+//            self.navigationController!.navigationBar.titleTextAttributes = attributes as? [String : AnyObject]
+            
+            self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
+            //Set Font Size
+            self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Bold", size: 25.0)!];
             
         } else {
             navigationController?.performSegueWithIdentifier("noCurrentUserSegue", sender:nil)
@@ -164,7 +172,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         } else {
             cell.updateWithCategory(category, shouldReload: true)
         }
-        cell.backgroundColor = UIColor(red:0.55, green:0.76, blue:0.29, alpha:1.0)
+        //cell.backgroundColor = UIColor(red:0.55, green:0.76, blue:0.29, alpha:1.0)
         
         cell.delegate = self
         

@@ -61,7 +61,6 @@
                                                             <constraint firstItem="eYQ-3G-aAC" firstAttribute="centerY" secondItem="BL6-4P-2hd" secondAttribute="centerY" id="wcg-Dq-eqC"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <outlet property="commentLabel" destination="eYQ-3G-aAC" id="l4t-b4-dam"/>
                                                         <outlet property="dateLabel" destination="BL6-4P-2hd" id="Lhh-mh-44i"/>
@@ -73,95 +72,89 @@
                                                 <outlet property="dataSource" destination="0WU-fB-pym" id="SDg-Yr-eAw"/>
                                             </connections>
                                         </tableView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catgory Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJa-ZK-l6W">
-                                            <rect key="frame" x="8" y="8" width="180" height="33"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-gC-cZj">
-                                            <rect key="frame" x="529" y="79" width="63" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSR-kn-PIj">
-                                            <rect key="frame" x="529" y="8" width="63" height="63"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zaD-8Y-VKS">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="101"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catgory Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJa-ZK-l6W">
+                                                    <rect key="frame" x="8" y="8" width="175" height="39"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="28"/>
+                                                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSR-kn-PIj">
+                                                    <rect key="frame" x="529" y="11" width="63" height="63"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="63" id="RhS-Cw-uKR"/>
+                                                        <constraint firstAttribute="width" constant="63" id="eYi-G2-Ql5"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="plus(resized)"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addExpenseButtonTapped:" destination="x2u-Fe-4Eb" eventType="touchUpInside" id="tY2-T3-9EK"/>
+                                                    </connections>
+                                                </button>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g5b-GC-WI8">
+                                                    <rect key="frame" x="8" y="80" width="491" height="2"/>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmx-ZY-a2V" userLabel="expenseSummeryLabel">
+                                                    <rect key="frame" x="8" y="47" width="491" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="UBE-32-ej9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-gC-cZj">
+                                                    <rect key="frame" x="529" y="77" width="63" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="63" id="RhS-Cw-uKR"/>
-                                                <constraint firstAttribute="width" constant="63" id="eYi-G2-Ql5"/>
+                                                <constraint firstItem="lX8-gC-cZj" firstAttribute="width" secondItem="wSR-kn-PIj" secondAttribute="width" id="2AL-CC-qTx"/>
+                                                <constraint firstItem="g5b-GC-WI8" firstAttribute="bottom" secondItem="lX8-gC-cZj" secondAttribute="bottom" id="2hZ-QZ-Vsj"/>
+                                                <constraint firstItem="tJa-ZK-l6W" firstAttribute="top" secondItem="zaD-8Y-VKS" secondAttribute="top" id="3D2-RY-VwO"/>
+                                                <constraint firstItem="bmx-ZY-a2V" firstAttribute="width" secondItem="g5b-GC-WI8" secondAttribute="width" id="54g-fP-zYc"/>
+                                                <constraint firstItem="tJa-ZK-l6W" firstAttribute="top" secondItem="zaD-8Y-VKS" secondAttribute="topMargin" id="E3Z-Cx-jct"/>
+                                                <constraint firstItem="tJa-ZK-l6W" firstAttribute="leading" secondItem="zaD-8Y-VKS" secondAttribute="leadingMargin" id="FzS-xa-ccd"/>
+                                                <constraint firstItem="wSR-kn-PIj" firstAttribute="trailing" secondItem="tJa-ZK-l6W" secondAttribute="trailing" id="HYF-A7-7oI"/>
+                                                <constraint firstAttribute="height" constant="101" id="LKv-gm-Gbb"/>
+                                                <constraint firstAttribute="bottom" secondItem="g5b-GC-WI8" secondAttribute="bottom" constant="19" id="QwR-rw-bX2"/>
+                                                <constraint firstItem="wSR-kn-PIj" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="top" constant="8" id="R7z-Hg-So5"/>
+                                                <constraint firstItem="lX8-gC-cZj" firstAttribute="leading" secondItem="g5b-GC-WI8" secondAttribute="trailing" constant="30" id="VVq-lx-sxw"/>
+                                                <constraint firstItem="bmx-ZY-a2V" firstAttribute="centerX" secondItem="g5b-GC-WI8" secondAttribute="centerX" id="bU8-i4-N9Q"/>
+                                                <constraint firstItem="tJa-ZK-l6W" firstAttribute="leading" secondItem="zaD-8Y-VKS" secondAttribute="leading" id="dPK-Eg-ZL5"/>
+                                                <constraint firstItem="wSR-kn-PIj" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="top" constant="3" id="dxs-My-XQG"/>
+                                                <constraint firstItem="lX8-gC-cZj" firstAttribute="centerX" secondItem="wSR-kn-PIj" secondAttribute="centerX" id="frR-DQ-QEK"/>
+                                                <constraint firstItem="lX8-gC-cZj" firstAttribute="top" secondItem="wSR-kn-PIj" secondAttribute="bottom" constant="3" id="i2h-my-L4P"/>
+                                                <constraint firstAttribute="trailing" secondItem="wSR-kn-PIj" secondAttribute="trailing" constant="8" id="kgX-pT-J4K"/>
+                                                <constraint firstItem="g5b-GC-WI8" firstAttribute="top" secondItem="bmx-ZY-a2V" secondAttribute="bottom" constant="12" id="sa3-RD-Tyg"/>
+                                                <constraint firstItem="g5b-GC-WI8" firstAttribute="leading" secondItem="tJa-ZK-l6W" secondAttribute="leading" id="tAA-6d-vE5"/>
                                             </constraints>
-                                            <state key="normal" backgroundImage="plus(resized)"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="addExpenseButtonTapped:" destination="x2u-Fe-4Eb" eventType="touchUpInside" id="tY2-T3-9EK"/>
-                                            </connections>
-                                        </button>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g5b-GC-WI8">
-                                            <rect key="frame" x="8" y="85" width="446" height="2"/>
-                                        </progressView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmx-ZY-a2V" userLabel="expenseSummeryLabel">
-                                            <rect key="frame" x="8" y="52" width="446" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="UBE-32-ej9"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="3D2-RY-VwO"/>
+                                                    <exclude reference="dPK-Eg-ZL5"/>
+                                                    <exclude reference="2hZ-QZ-Vsj"/>
+                                                    <exclude reference="HYF-A7-7oI"/>
+                                                    <exclude reference="R7z-Hg-So5"/>
+                                                </mask>
+                                            </variation>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="wSR-kn-PIj" secondAttribute="trailing" id="3fd-P5-itH"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="top" secondItem="bmx-ZY-a2V" secondAttribute="bottom" constant="8" id="5lg-sN-XYa"/>
-                                        <constraint firstItem="j4v-db-GXN" firstAttribute="top" secondItem="g5b-GC-WI8" secondAttribute="bottom" constant="9" id="CDd-8X-wvg"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="trailing" secondItem="lX8-gC-cZj" secondAttribute="trailing" id="D7u-HP-6SQ"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="bottom" secondItem="lX8-gC-cZj" secondAttribute="bottom" id="E4O-YB-Xkx"/>
-                                        <constraint firstItem="lX8-gC-cZj" firstAttribute="leading" secondItem="g5b-GC-WI8" secondAttribute="trailing" constant="75" id="Gm1-Zj-B2H"/>
-                                        <constraint firstAttribute="topMargin" secondItem="wSR-kn-PIj" secondAttribute="top" id="HgP-2A-Trq"/>
-                                        <constraint firstItem="bmx-ZY-a2V" firstAttribute="centerX" secondItem="g5b-GC-WI8" secondAttribute="centerX" id="INC-29-nuv"/>
-                                        <constraint firstItem="lX8-gC-cZj" firstAttribute="leading" secondItem="g5b-GC-WI8" secondAttribute="trailing" constant="75" id="IaT-aI-ref"/>
-                                        <constraint firstItem="lX8-gC-cZj" firstAttribute="width" secondItem="wSR-kn-PIj" secondAttribute="width" id="JJ2-Rg-mXT"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="g5b-GC-WI8" secondAttribute="trailing" constant="372" id="Jig-PT-S7y"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="top" secondItem="bmx-ZY-a2V" secondAttribute="bottom" constant="12" id="JvM-CT-ciY"/>
                                         <constraint firstItem="j4v-db-GXN" firstAttribute="leading" secondItem="cPG-nx-Y3Q" secondAttribute="leading" id="LAJ-uY-hKW"/>
-                                        <constraint firstItem="wSR-kn-PIj" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="top" id="M9k-Xj-LVH"/>
-                                        <constraint firstItem="lX8-gC-cZj" firstAttribute="leading" secondItem="wSR-kn-PIj" secondAttribute="leading" id="OLb-sO-RQG"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="baseline" secondItem="lX8-gC-cZj" secondAttribute="baseline" id="Qks-j6-Erp"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="bottom" constant="44" id="RkO-EH-kRG"/>
-                                        <constraint firstItem="lX8-gC-cZj" firstAttribute="top" secondItem="wSR-kn-PIj" secondAttribute="bottom" constant="8" id="Scz-y4-223"/>
-                                        <constraint firstItem="j4v-db-GXN" firstAttribute="top" secondItem="lX8-gC-cZj" secondAttribute="bottom" constant="5" id="WgM-17-xIf"/>
+                                        <constraint firstItem="zaD-8Y-VKS" firstAttribute="top" secondItem="cPG-nx-Y3Q" secondAttribute="top" id="Wov-nE-xXr"/>
                                         <constraint firstItem="j4v-db-GXN" firstAttribute="top" secondItem="cPG-nx-Y3Q" secondAttribute="top" constant="100" id="b4I-6R-I2v"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="leading" secondItem="tJa-ZK-l6W" secondAttribute="leading" id="bK6-0D-C7d"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="tJa-ZK-l6W" secondAttribute="leading" id="cMt-HT-vl2"/>
+                                        <constraint firstAttribute="trailing" secondItem="zaD-8Y-VKS" secondAttribute="trailing" id="b6h-Jd-akx"/>
+                                        <constraint firstItem="zaD-8Y-VKS" firstAttribute="leading" secondItem="cPG-nx-Y3Q" secondAttribute="leading" id="ck7-Mh-8kY"/>
                                         <constraint firstAttribute="trailing" secondItem="j4v-db-GXN" secondAttribute="trailing" id="ese-sM-Exx"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="bottom" secondItem="lX8-gC-cZj" secondAttribute="bottom" id="jxg-c5-eHX"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="bottom" secondItem="lX8-gC-cZj" secondAttribute="bottom" id="nDF-tN-f7k"/>
-                                        <constraint firstAttribute="topMargin" secondItem="wSR-kn-PIj" secondAttribute="top" id="on1-o4-AE5"/>
-                                        <constraint firstAttribute="topMargin" secondItem="tJa-ZK-l6W" secondAttribute="top" id="prn-Mz-tvI"/>
-                                        <constraint firstItem="bmx-ZY-a2V" firstAttribute="width" secondItem="g5b-GC-WI8" secondAttribute="width" id="t6T-tE-wc0"/>
                                         <constraint firstAttribute="bottom" secondItem="j4v-db-GXN" secondAttribute="bottom" id="vv4-tM-gT3"/>
-                                        <constraint firstItem="bmx-ZY-a2V" firstAttribute="leading" secondItem="g5b-GC-WI8" secondAttribute="trailing" constant="-244" id="wFr-md-IgV"/>
-                                        <constraint firstItem="g5b-GC-WI8" firstAttribute="leading" secondItem="tJa-ZK-l6W" secondAttribute="leading" id="xj6-ka-bsp"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="wFr-md-IgV"/>
-                                            <exclude reference="5lg-sN-XYa"/>
-                                            <exclude reference="D7u-HP-6SQ"/>
-                                            <exclude reference="E4O-YB-Xkx"/>
-                                            <exclude reference="Jig-PT-S7y"/>
-                                            <exclude reference="Qks-j6-Erp"/>
-                                            <exclude reference="bK6-0D-C7d"/>
-                                            <exclude reference="jxg-c5-eHX"/>
-                                            <exclude reference="nDF-tN-f7k"/>
-                                            <exclude reference="CDd-8X-wvg"/>
-                                            <exclude reference="HgP-2A-Trq"/>
-                                            <exclude reference="M9k-Xj-LVH"/>
-                                            <exclude reference="IaT-aI-ref"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addExpenseButton" destination="wSR-kn-PIj" id="b3G-fC-hEJ"/>
@@ -169,6 +162,7 @@
                                     <outlet property="categoryDetailTableView" destination="j4v-db-GXN" id="JWW-Es-fxh"/>
                                     <outlet property="categoryTitleLabel" destination="tJa-ZK-l6W" id="JiQ-0L-WDk"/>
                                     <outlet property="expenseSummeryLabel" destination="bmx-ZY-a2V" id="OjM-6v-lnP"/>
+                                    <outlet property="mainViewCell" destination="zaD-8Y-VKS" id="pRa-wE-Lkt"/>
                                     <outlet property="progressView" destination="g5b-GC-WI8" id="1ds-BM-qIU"/>
                                 </connections>
                             </tableViewCell>

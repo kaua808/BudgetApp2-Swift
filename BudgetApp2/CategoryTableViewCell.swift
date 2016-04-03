@@ -13,7 +13,8 @@ class CategoryTableViewCell: UITableViewCell {
     var isObseving = false
     
     var delegate: CategoryTableViewCellDelegate?
-
+    
+    @IBOutlet var mainViewCell: UIView!
     @IBOutlet var categoryTitleLabel: UILabel!
     @IBOutlet var categoryDetailTableView: UITableView!
     @IBOutlet var addExpenseButton: UIButton!
@@ -103,10 +104,11 @@ class CategoryTableViewCell: UITableViewCell {
         self.categoryTitleLabel.text = category.name
         self.progressView.transform = CGAffineTransformMakeScale(1, 13)
         self.progressView.layer.cornerRadius = 8
-        self.progressView.progressTintColor = UIColor(red:0.31, green:0.76, blue:0.97, alpha:1.0)
+        self.progressView.progressTintColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
         self.progressView.trackTintColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
-        //self.progressView.layer.masksToBounds = true
-        //self.progressView.clipsToBounds = true
+        self.mainViewCell.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
+        self.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        
         
     }
     

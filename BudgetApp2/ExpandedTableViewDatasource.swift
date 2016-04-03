@@ -35,7 +35,7 @@ class ExpandedTableViewDatasource: NSObject, UITableViewDataSource {
             cell.updateWithExpense(expense[indexPath.row])
         
         }
-        
+        cell.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         return cell
     }
     
