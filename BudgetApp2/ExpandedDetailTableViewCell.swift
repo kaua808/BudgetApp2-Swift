@@ -34,10 +34,10 @@ class ExpandedDetailTableViewCell: UITableViewCell {
         let dateStringToNSDate: NSDate? = dateFormatter.dateFromString(expense.date)
         
         let myDateFormatter = NSDateFormatter()
-        myDateFormatter.dateFormat = "M/dd"
+        myDateFormatter.dateFormat = "MM/dd"
         
         self.dateLabel.text = myDateFormatter.stringFromDate(dateStringToNSDate!)
-        self.priceLabel.text = String(expense.price)
+        self.priceLabel.text = "$\(expense.price)"
         self.commentLabel.text = expense.comment
         
     }
