@@ -28,6 +28,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         myTableHeaderView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         expenseHeaderView.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
         expenseDetailTableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         
         
     // Dismiss Keybaord when view is touched
@@ -62,7 +63,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                 if expenses.count == 0  {
                     
                 } else {
-                    self.expenses = expenses
+                    self.expenses = expenses.sort({$0.0.date < $0.1.date})
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.expenseDetailTableView.reloadData()
                         self.expenseHeaderView.hidden = false
@@ -149,6 +150,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                 ExpenseController.addNewExpense(date, price: Float(price)!, comment: comment, categoryID: (category?.identifier)!, completion: { (success, expense) -> Bool in
                     
                     if expense != nil {
+                        
                         self.expenseDetailTableView.reloadData()
                         return true
                     } else {
@@ -157,6 +159,9 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                     
                 })
             }
+            self.dateTextField.text = ""
+            self.priceTextField.text = ""
+            self.commentTextField.text = ""
         }
     }
     
@@ -176,6 +181,16 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         tableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            expenses[indexPath.row].delete()
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.reloadData()
+            
+        }
     }
     
 }

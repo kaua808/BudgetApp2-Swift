@@ -21,6 +21,7 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet var addExpenseLabel: UILabel!
     @IBOutlet var expenseSummeryLabel: UILabel!
     @IBOutlet var progressView: UIProgressView!
+    @IBOutlet var editButtonTapped: UIButton!
     
     var expenses: [Expense] = []
     
@@ -112,6 +113,13 @@ class CategoryTableViewCell: UITableViewCell {
         
     }
     
+    @IBAction func editButtonTapped(sender: AnyObject) {
+        
+        delegate?.editButtonTapped(self)
+        
+    }
+    
+    
     @IBAction func addExpenseButtonTapped(sender: AnyObject) {
         
         delegate?.expenseButtonTapped(self)
@@ -122,6 +130,8 @@ class CategoryTableViewCell: UITableViewCell {
 protocol CategoryTableViewCellDelegate {
     
     func expenseButtonTapped(cell: CategoryTableViewCell)
+    
+    func editButtonTapped(cell: CategoryTableViewCell)
     
 }
 

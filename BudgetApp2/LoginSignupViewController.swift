@@ -38,12 +38,11 @@ class LoginSignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        self.view.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         updateViewBasedOnMode()
+        navigationController?.navigationBar.hidden = false
+        self.title = "Welcome"
     }
     
     override func didReceiveMemoryWarning() {

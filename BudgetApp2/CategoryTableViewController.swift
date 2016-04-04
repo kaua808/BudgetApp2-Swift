@@ -52,7 +52,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     func loadCategories(user: User) {
         CategoryController.fetchCategoriesForUSer(user) { (categories) -> Void in
             if let categories = categories {
-                self.categories = categories
+                self.categories = categories.sort({$0.0.name < $0.1.name})
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
@@ -71,20 +71,31 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
                 let name = textFields[0].text,
                 let budgetText = textFields[1].text {
                 
-                let trimmedBudgetAmount = budgetText.stringByReplacingOccurrencesOfString("$", withString: "")
-                
-                let budgetAmount = Float(trimmedBudgetAmount)
-                
-                CategoryController.addNewCategory(name, budgetAmount: budgetAmount!, completion: { (success, category) -> Bool in
+                if name == "" || budgetText == "" {
+                    let alert = UIAlertController(title: nil, message: "Please fill in all of the fields", preferredStyle: .Alert)
                     
-                    if category != nil {
-                        return true
-                    } else {
-                        print("could not add Category")
-                        return false
-                    }
+                    let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
                     
-                })
+                    alert.addAction(okay)
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                } else {
+                    let trimmedBudgetAmount = budgetText.stringByReplacingOccurrencesOfString("$", withString: "")
+                    
+                    let budgetAmount = Float(trimmedBudgetAmount)
+                    
+                    CategoryController.addNewCategory(name, budgetAmount: budgetAmount!, completion: { (success, category) -> Bool in
+                        
+                        if category != nil {
+                            return true
+                        } else {
+                            print("could not add Category")
+                            return false
+                        }
+                        
+                    })
+                }
                 
             }
         }
@@ -96,7 +107,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             nameField.placeholder = "Name"
         }
         alert.addTextFieldWithConfigurationHandler { (nameField) -> Void in
-            nameField.placeholder = "Budget Amount $"
+            nameField.placeholder = "Budget Amount"
         }
         
         presentViewController(alert, animated: true, completion: nil)
@@ -192,7 +203,46 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         self.performSegueWithIdentifier("toCategoryDetail", sender: cell)
     }
     
+    func editButtonTapped(cell: CategoryTableViewCell) {
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let alert = UIAlertController(title: "Add Category", message: "Enter name and budget amount below", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            let save = UIAlertAction(title: "Save", style: UIAlertActionStyle.Default) { (action) -> Void in
+                if let textFields = alert.textFields,
+                    let name = textFields[0].text,
+                    let budgetText = textFields[1].text {
+                    
+                    let trimmedBudgetAmount = budgetText.stringByReplacingOccurrencesOfString("$", withString: "")
+                    
+                    let budgetAmount = Float(trimmedBudgetAmount)
+                    
+                    
+                    CategoryController.updateCategory(self.categories[indexPath.row], name: name, budgetAmount: budgetAmount)
+                    
+                }
+            }
+            
+            alert.addAction(cancel)
+            alert.addAction(save)
+            
+            alert.addTextFieldWithConfigurationHandler { (nameField) -> Void in
+                nameField.placeholder = "Name (Optional)"
+            }
+            alert.addTextFieldWithConfigurationHandler { (nameField) -> Void in
+                nameField.placeholder = "Budget Amount (Optional)"
+            }
+            
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         if segue.identifier == "toCategoryDetail" {
             
             let destinationViewController = segue.destinationViewController as? CategoryDetailTableViewController

@@ -113,12 +113,24 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gy-kh-XdL">
+                                                    <rect key="frame" x="191" y="13" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="81q-Va-mAv"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ymK-2X-kqW"/>
+                                                    </constraints>
+                                                    <state key="normal" image="EditFilled(10x10)"/>
+                                                    <connections>
+                                                        <action selector="editButtonTapped:" destination="x2u-Fe-4Eb" eventType="touchUpInside" id="j4p-tZ-XGx"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lX8-gC-cZj" firstAttribute="width" secondItem="wSR-kn-PIj" secondAttribute="width" id="2AL-CC-qTx"/>
                                                 <constraint firstItem="g5b-GC-WI8" firstAttribute="bottom" secondItem="lX8-gC-cZj" secondAttribute="bottom" id="2hZ-QZ-Vsj"/>
                                                 <constraint firstItem="tJa-ZK-l6W" firstAttribute="top" secondItem="zaD-8Y-VKS" secondAttribute="top" id="3D2-RY-VwO"/>
                                                 <constraint firstItem="bmx-ZY-a2V" firstAttribute="width" secondItem="g5b-GC-WI8" secondAttribute="width" id="54g-fP-zYc"/>
+                                                <constraint firstItem="1gy-kh-XdL" firstAttribute="leading" secondItem="tJa-ZK-l6W" secondAttribute="trailing" constant="8" id="Dux-4X-0zk"/>
                                                 <constraint firstItem="tJa-ZK-l6W" firstAttribute="top" secondItem="zaD-8Y-VKS" secondAttribute="topMargin" id="E3Z-Cx-jct"/>
                                                 <constraint firstItem="tJa-ZK-l6W" firstAttribute="leading" secondItem="zaD-8Y-VKS" secondAttribute="leadingMargin" id="FzS-xa-ccd"/>
                                                 <constraint firstItem="wSR-kn-PIj" firstAttribute="trailing" secondItem="tJa-ZK-l6W" secondAttribute="trailing" id="HYF-A7-7oI"/>
@@ -131,6 +143,7 @@
                                                 <constraint firstItem="wSR-kn-PIj" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="top" constant="3" id="dxs-My-XQG"/>
                                                 <constraint firstItem="lX8-gC-cZj" firstAttribute="centerX" secondItem="wSR-kn-PIj" secondAttribute="centerX" id="frR-DQ-QEK"/>
                                                 <constraint firstItem="lX8-gC-cZj" firstAttribute="top" secondItem="wSR-kn-PIj" secondAttribute="bottom" constant="3" id="i2h-my-L4P"/>
+                                                <constraint firstItem="1gy-kh-XdL" firstAttribute="top" secondItem="tJa-ZK-l6W" secondAttribute="top" constant="5" id="ibx-V4-wOW"/>
                                                 <constraint firstAttribute="trailing" secondItem="wSR-kn-PIj" secondAttribute="trailing" constant="8" id="kgX-pT-J4K"/>
                                                 <constraint firstItem="g5b-GC-WI8" firstAttribute="top" secondItem="bmx-ZY-a2V" secondAttribute="bottom" constant="12" id="sa3-RD-Tyg"/>
                                                 <constraint firstItem="g5b-GC-WI8" firstAttribute="leading" secondItem="tJa-ZK-l6W" secondAttribute="leading" id="tAA-6d-vE5"/>
@@ -161,6 +174,7 @@
                                     <outlet property="addExpenseLabel" destination="lX8-gC-cZj" id="rae-Yi-3gS"/>
                                     <outlet property="categoryDetailTableView" destination="j4v-db-GXN" id="JWW-Es-fxh"/>
                                     <outlet property="categoryTitleLabel" destination="tJa-ZK-l6W" id="JiQ-0L-WDk"/>
+                                    <outlet property="editButtonTapped" destination="1gy-kh-XdL" id="Gar-qK-gNZ"/>
                                     <outlet property="expenseSummeryLabel" destination="bmx-ZY-a2V" id="OjM-6v-lnP"/>
                                     <outlet property="mainViewCell" destination="zaD-8Y-VKS" id="pRa-wE-Lkt"/>
                                     <outlet property="progressView" destination="g5b-GC-WI8" id="1ds-BM-qIU"/>
@@ -222,7 +236,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-4A-OwR">
                                 <rect key="frame" x="20" y="108" width="560" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OurBudget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="4Fq-qF-1B5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="moneywatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="4Fq-qF-1B5">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="96"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -285,8 +299,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qxO-WV-5iS">
-                                <rect key="frame" x="20" y="239" width="560" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="qxO-WV-5iS">
+                                <rect key="frame" x="20" y="239" width="560" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDz-iG-cQD">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
@@ -294,17 +308,17 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ar-LZ-Dhe">
-                                        <rect key="frame" x="0.0" y="30" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="48" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ojt-L4-chk">
-                                        <rect key="frame" x="0.0" y="60" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="96" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sle-rV-g9r">
-                                        <rect key="frame" x="0.0" y="90" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="144" width="560" height="30"/>
                                         <state key="normal" title="Action"/>
                                         <connections>
                                             <action selector="actionButtonTapped" destination="qcH-SI-7ql" eventType="touchUpInside" id="tA8-Ra-psp"/>
@@ -316,7 +330,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="qxO-WV-5iS" secondAttribute="leading" id="8uv-i4-375"/>
-                            <constraint firstItem="gJ7-TN-fAR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qxO-WV-5iS" secondAttribute="bottom" priority="750" constant="225" id="MdZ-g6-0QZ"/>
+                            <constraint firstItem="gJ7-TN-fAR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qxO-WV-5iS" secondAttribute="bottom" priority="750" constant="187" id="MdZ-g6-0QZ"/>
                             <constraint firstItem="qxO-WV-5iS" firstAttribute="top" secondItem="g3U-il-dBP" secondAttribute="bottom" constant="175" id="V4b-gR-0iM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qxO-WV-5iS" secondAttribute="trailing" id="thP-Gu-Ye7"/>
                         </constraints>
@@ -663,6 +677,7 @@
     </scenes>
     <resources>
         <image name="Calender(35x35)" width="35" height="35"/>
+        <image name="EditFilled(10x10)" width="10" height="10"/>
         <image name="Price Tag USD Filled-50" width="50" height="50"/>
         <image name="dollar(21x21)" width="21" height="21"/>
         <image name="plus(resized)" width="50" height="50"/>
