@@ -34,10 +34,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             
             self.title = "money watcher"
             
-            //Set Color
-//            let attributes: AnyObject = [ NSForegroundColorAttributeName: UIColor.redColor()]
-//            self.navigationController!.navigationBar.titleTextAttributes = attributes as? [String : AnyObject]
-            
             self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
 
             //Set Font Size
@@ -59,8 +55,9 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             }
         }
     }
+
     
-    @IBAction func addCategoryTapped(sender: AnyObject) {
+    @IBAction func addCategoryButtonTapped(sender: AnyObject) {
         
         let alert = UIAlertController(title: "Add Category", message: "Enter name and budget amount below", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -93,10 +90,8 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
                             print("could not add Category")
                             return false
                         }
-                        
                     })
                 }
-                
             }
         }
         
@@ -114,6 +109,12 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         
     }
     
+    @IBAction func addCategoryTapped(sender: AnyObject) {
+        
+ 
+        
+    }
+    
     // MARK: - Expanding Cell Stuff
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -125,7 +126,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             selectedIndexPath = indexPath
         }
         
-        //        var indexPaths: Array<NSIndexPath> = []
         indexPaths = []
         if let previous = previousIndexPath {
             indexPaths += [previous]
@@ -138,8 +138,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
             
         }
-        
-        
         
     }
     
@@ -169,7 +167,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return categories.count
     }
     
@@ -183,21 +181,13 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         } else {
             cell.updateWithCategory(category, shouldReload: true)
         }
-        //cell.backgroundColor = UIColor(red:0.55, green:0.76, blue:0.29, alpha:1.0)
         
         cell.delegate = self
         
         return cell
-    }
-    
-    
-    
+    } 
     
     // MARK: - Navigation
-    
-    //    func toCategoryDetailButtonTapped() {
-    //        self.performSegueWithIdentifier("toCategoryDetail", sender: self)
-    //    }
     
     func expenseButtonTapped(cell: CategoryTableViewCell) {
         self.performSegueWithIdentifier("toCategoryDetail", sender: cell)
@@ -253,6 +243,8 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             }
         }
     }
+    
+
     
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C464754F1CB42C6200C9F07E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */; };
 		C48A74211CAF16060085304D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74201CAF16060085304D /* AppDelegate.swift */; };
 		C48A742B1CAF16060085304D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48A74291CAF16060085304D /* LaunchScreen.storyboard */; };
 		C48A74361CAF16060085304D /* BudgetApp2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74351CAF16060085304D /* BudgetApp2Tests.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C48A741D1CAF16060085304D /* BudgetApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48A74201CAF16060085304D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C48A742A1CAF16060085304D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				C48A74661CAF17910085304D /* CategoryDetailTableViewController.swift */,
 				C48A74671CAF17910085304D /* LoginSignupChoiceViewController.swift */,
 				C48A74681CAF17910085304D /* LoginSignupViewController.swift */,
+				C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				C48A74741CAF17910085304D /* ExpandedDetailTableViewCell.swift in Sources */,
 				C48A747F1CAF17D40085304D /* UserController.swift in Sources */,
 				C48A74751CAF17910085304D /* ExpenseDetailTableViewCell.swift in Sources */,
+				C464754F1CB42C6200C9F07E /* SettingsTableViewController.swift in Sources */,
 				C48A74641CAF17860085304D /* ExpandedTableViewDatasource.swift in Sources */,
 				C48A74211CAF16060085304D /* AppDelegate.swift in Sources */,
 				C48A746F1CAF17910085304D /* CategoryTableViewController.swift in Sources */,
@@ -619,6 +623,7 @@
 				C48A74471CAF16060085304D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C48A74481CAF16060085304D /* Build configuration list for PBXNativeTarget "BudgetApp2Tests" */ = {
 			isa = XCConfigurationList;
@@ -627,6 +632,7 @@
 				C48A744A1CAF16060085304D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C48A744B1CAF16060085304D /* Build configuration list for PBXNativeTarget "BudgetApp2UITests" */ = {
 			isa = XCConfigurationList;
@@ -635,6 +641,7 @@
 				C48A744D1CAF16060085304D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

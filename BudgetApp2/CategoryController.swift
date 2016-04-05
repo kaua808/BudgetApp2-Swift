@@ -78,11 +78,4 @@ class CategoryController {
     
     
     
-    
-    
-    
-    
-    //Delete Category
-    //EditCategory
-    
 }

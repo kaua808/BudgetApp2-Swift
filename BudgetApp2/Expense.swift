@@ -15,7 +15,7 @@ class Expense: Equatable, FirebaseType {
     private let kComment = "comment"
     private let kCategoryID = "categoryID"
     
-    var date: String
+    var date: NSDate
     var price: Float
     var comment: String
     var categoryID: String
@@ -24,19 +24,19 @@ class Expense: Equatable, FirebaseType {
         return "expense"
     }
     var jsonValue: [String: AnyObject] {
-        let json: [String: AnyObject] = [kDate: date, kPrice: price, kComment: comment, kCategoryID: categoryID]
+        let json: [String: AnyObject] = [kDate: date.timeIntervalSince1970, kPrice: price, kComment: comment, kCategoryID: categoryID]
         
         return json
     }
     
     required init?(json: [String: AnyObject], identifier: String) {
         
-        guard let date = json[kDate] as? String,
+        guard let dateInterval = json[kDate] as? NSTimeInterval,
             let price = json[kPrice] as? Float,
             let comment = json[kComment] as? String,
             let categoryID = json[kCategoryID] as? String else {
                 
-                self.date = ""
+                self.date = NSDate()
                 self.price = 0
                 self.comment = ""
                 self.categoryID = ""
@@ -44,14 +44,15 @@ class Expense: Equatable, FirebaseType {
                 return nil
         }
         
-        self.date = date
+        self.date = NSDate(timeIntervalSince1970: dateInterval)
         self.price = price
         self.comment = comment
+        self.identifier = identifier
         self.categoryID = categoryID
         
     }
     
-    init(date: String, price: Float, comment: String, categoryID: String) {
+    init(date: NSDate, price: Float, comment: String, categoryID: String) {
      
         self.date = date
         self.price = price

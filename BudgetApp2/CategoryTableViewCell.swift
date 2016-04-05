@@ -79,10 +79,10 @@ class CategoryTableViewCell: UITableViewCell {
                 
                 for price in expenses {
                     totalExpense += price.price
-                    
-                    self.updateProgressView(totalExpense, category: category)
-                    self.expenseSummeryLabel.text = "$\(totalExpense) / $\(category.budgetAmount)"
                 }
+                
+                self.updateProgressView(totalExpense, category: category)
+                self.expenseSummeryLabel.text = "$\(totalExpense) / $\(category.budgetAmount)"
                 
                 if self.isObseving {
                     if shouldReload == true {
