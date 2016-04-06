@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "EditFilled(10x10).png",
+      "filename" : "LOGO 40 Clear.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "LOGO 40 Clear@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "LOGO 40 Clear@3x.png",
       "scale" : "3x"
     }
   ],

@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "EditFilled(10x10).png",
+      "filename" : "NavLogo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "NavLogo@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "NavLogo@3x.png",
       "scale" : "3x"
     }
   ],

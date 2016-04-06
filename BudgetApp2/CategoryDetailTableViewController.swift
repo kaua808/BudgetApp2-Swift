@@ -27,8 +27,8 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         fillerView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         myTableHeaderView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         expenseHeaderView.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
-        expenseDetailTableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
-        self.view.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
+        expenseDetailTableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         
         
     // Dismiss Keybaord when view is touched
@@ -183,8 +183,8 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         let expense = expenses[indexPath.row]
         
         cell.updateWithExpense(expense)
-        cell.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
-        tableView.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
+        cell.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        tableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         
         return cell
     }
