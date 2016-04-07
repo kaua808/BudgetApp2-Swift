@@ -42,7 +42,12 @@ class LoginSignupViewController: UIViewController {
         self.view.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         updateViewBasedOnMode()
         navigationController?.navigationBar.hidden = false
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         self.title = "Welcome"
+        
+        self.usernameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,4 +139,13 @@ class LoginSignupViewController: UIViewController {
     }
     */
 
+}
+
+extension LoginSignupViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
