@@ -16,7 +16,7 @@ class CategoryController {
         
         let userID = UserController.sharedController.currentUser.identifier!
         
-        var newCategory = Category(name: name, budgetAmount: budgetAmount, userID: userID)
+        var newCategory = Category(name: name, budgetAmount: budgetAmount, isVisible: true, userID: userID)
         newCategory.save()
         
         
@@ -31,15 +31,26 @@ class CategoryController {
             if let categoryDictionaries = snapshot.value as? [String: AnyObject] {
                 
                 let categories = categoryDictionaries.flatMap{Category(json: $0.1 as! [String : AnyObject], identifier: $0.0)}
-                
-                completion(categories: categories)
+                let filteredCategories = categories.filter({ (category) -> Bool in
+                    
+                    var categoryIsVisibleArray: [Category] = []
+                    if category.isVisible {
+                        categoryIsVisibleArray.append(category)
+                        return true
+                    } else {
+                        
+                        return false
+                    }
+                })
+                completion(categories: filteredCategories)
+            
             } else {
                 completion(categories: nil)
             }
         })
     }
     
-    static func updateCategory(category: Category, name: String?, budgetAmount: Float?) {
+    static func updateCategory(category: Category, name: String?, budgetAmount: Float?, isVisible: Bool?) {
         
         guard let categoryID = category.identifier else {return}
         
@@ -53,12 +64,15 @@ class CategoryController {
                 if let newName = name {
                     updatedCategory.name = newName
                 }
-             
+    
+                if let notVisible = isVisible {
+                    updatedCategory.isVisible = notVisible
+                }
+    
                 updatedCategory.save()
 
             }
         }
-
     }
     
     static func fetchCategoryForIdentifier(identifier: String, completion: (category: Category?) -> Void) {

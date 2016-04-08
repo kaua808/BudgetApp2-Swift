@@ -33,7 +33,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             
             let logo = UIImage(named: "NavLogo")
             let imageView = UIImageView(image:logo)
-            //let imagemode = imageView.contentMode
             self.navigationItem.titleView = imageView
             
             
@@ -114,12 +113,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         
     }
     
-    @IBAction func addCategoryTapped(sender: AnyObject) {
-        
- 
-        
-    }
-    
     // MARK: - Expanding Cell Stuff
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -170,6 +163,24 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     }
     
     // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        if categories.count > 0{
+            tableView.backgroundView = nil
+            return 1
+        } else {
+            let label = UILabel(frame: CGRectMake(0, 0 , tableView.bounds.size.width - 20, tableView.bounds.size.height))
+            label.text = "No Categories can be found.  Click 'Add Category' to add categories to your budget"
+            label.textColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
+            label.numberOfLines = 0
+            label.textAlignment = .Center
+            label.font = UIFont.systemFontOfSize(30, weight: UIFontWeightLight)
+            label.sizeToFit()
+            tableView.backgroundView = label
+            //tableView.separatorStyle = UITableViewCellSeparatorStyleNone
+        }
+        return 1
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -214,7 +225,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
                     let budgetAmount = Float(trimmedBudgetAmount)
                     
                     
-                    CategoryController.updateCategory(self.categories[indexPath.row], name: name, budgetAmount: budgetAmount)
+                    CategoryController.updateCategory(self.categories[indexPath.row], name: name, budgetAmount: budgetAmount, isVisible: nil)
                     
                 }
             }
@@ -248,6 +259,29 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             }
         }
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+
+            let alert = UIAlertController(title: "Are you sure?", message: "You will no longer be able to view or edit this category", preferredStyle: .Alert)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            let okay = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+                CategoryController.updateCategory(self.categories[indexPath.row], name: nil, budgetAmount: nil, isVisible: false)
+                
+                tableView.reloadData()
+            })
+            
+            alert.addAction(okay)
+            alert.addAction(cancel)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
+    
     
 
     

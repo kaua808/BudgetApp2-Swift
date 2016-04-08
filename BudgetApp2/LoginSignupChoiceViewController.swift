@@ -13,7 +13,8 @@ class LoginSignupChoiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
+        //self.view.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
         
     }
 
