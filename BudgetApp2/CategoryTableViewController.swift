@@ -174,7 +174,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             label.textColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
             label.numberOfLines = 0
             label.textAlignment = .Center
-            label.font = UIFont.systemFontOfSize(30, weight: UIFontWeightLight)
+            label.font = UIFont.systemFontOfSize(25, weight: UIFontWeightLight)
             label.sizeToFit()
             tableView.backgroundView = label
             //tableView.separatorStyle = UITableViewCellSeparatorStyleNone

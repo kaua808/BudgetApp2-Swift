@@ -57,14 +57,24 @@ class CategoryController {
         CategoryController.fetchCategoryForIdentifier(categoryID) { (category) in
             if var updatedCategory = category {
                 
-                if let newAmount = budgetAmount {
-                    updatedCategory.budgetAmount = newAmount
+                if name == "" && budgetAmount != nil {
+                    if let newAmount = budgetAmount {
+                        updatedCategory.budgetAmount = newAmount
+                    }
                     
+                } else if name != "" && budgetAmount == nil {
+                    if let newName = name {
+                        updatedCategory.name = newName
+                    }
+                } else {
+                    if let newAmount = budgetAmount {
+                        updatedCategory.budgetAmount = newAmount
+                        
+                    }
+                    if let newName = name {
+                        updatedCategory.name = newName
+                    }
                 }
-                if let newName = name {
-                    updatedCategory.name = newName
-                }
-    
                 if let notVisible = isVisible {
                     updatedCategory.isVisible = notVisible
                 }
