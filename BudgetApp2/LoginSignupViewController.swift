@@ -20,6 +20,8 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet var cangeViewModeLabel: UILabel!
+    @IBOutlet var changeViewModeButton: UIButton!
     
     var viewMode = ViewMode.Signup
     var fieldsAreValid: Bool {
@@ -56,14 +58,11 @@ class LoginSignupViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
         
-        
-        
-        //self.view.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
         self.view.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
         updateViewBasedOnMode()
         navigationController?.navigationBar.hidden = false
-        //navigationController?.navigationBar.barTintColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        
+ 
+        changeViewModeButton.setTitleColor(UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0), forState: .Normal)
         
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
@@ -75,14 +74,31 @@ class LoginSignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func changeViewModeTapped(sender: AnyObject) {
+        
+        if viewMode == ViewMode.Login {
+            viewMode = ViewMode.Signup
+
+            updateViewBasedOnMode()
+        } else {
+            viewMode = ViewMode.Login
+            
+            updateViewBasedOnMode()
+        }
+        
+    }
     func updateViewBasedOnMode() {
         switch viewMode {
         case .Login:
             usernameTextField.hidden = true
-            
             actionButton.setTitle("Login", forState: .Normal)
+            cangeViewModeLabel.text = "Dont have an account?"
+            changeViewModeButton.setTitle("Signup here", forState: .Normal)
         case .Signup:
+            usernameTextField.hidden = false
             actionButton.setTitle("Signup", forState: .Normal)
+            cangeViewModeLabel.text = "Already have an account?"
+            changeViewModeButton.setTitle("Login here", forState: .Normal)
         case .Edit:
             actionButton.setTitle("Update", forState: .Normal)
             

@@ -170,7 +170,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             return 1
         } else {
             let label = UILabel(frame: CGRectMake(0, 0 , tableView.bounds.size.width - 20, tableView.bounds.size.height))
-            label.text = "No Categories can be found.  Click 'Add Category' to add categories to your budget"
+            label.text = "Tap 'Add Category' to add categories to your budget"
             label.textColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
             label.numberOfLines = 0
             label.textAlignment = .Center
@@ -211,7 +211,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     
     func editButtonTapped(cell: CategoryTableViewCell) {
         if let indexPath = tableView.indexPathForCell(cell) {
-            let alert = UIAlertController(title: "Add Category", message: "Enter name and budget amount below", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Edit category", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             
             let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             

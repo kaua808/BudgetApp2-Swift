@@ -27,7 +27,6 @@
 		C48A74641CAF17860085304D /* ExpandedTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74621CAF17860085304D /* ExpandedTableViewDatasource.swift */; };
 		C48A746F1CAF17910085304D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74651CAF17910085304D /* CategoryTableViewController.swift */; };
 		C48A74701CAF17910085304D /* CategoryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74661CAF17910085304D /* CategoryDetailTableViewController.swift */; };
-		C48A74711CAF17910085304D /* LoginSignupChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74671CAF17910085304D /* LoginSignupChoiceViewController.swift */; };
 		C48A74721CAF17910085304D /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74681CAF17910085304D /* LoginSignupViewController.swift */; };
 		C48A74731CAF17910085304D /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A74691CAF17910085304D /* CategoryTableViewCell.swift */; };
 		C48A74741CAF17910085304D /* ExpandedDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A746A1CAF17910085304D /* ExpandedDetailTableViewCell.swift */; };
@@ -98,7 +97,6 @@
 		C48A74621CAF17860085304D /* ExpandedTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedTableViewDatasource.swift; sourceTree = "<group>"; };
 		C48A74651CAF17910085304D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		C48A74661CAF17910085304D /* CategoryDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewController.swift; sourceTree = "<group>"; };
-		C48A74671CAF17910085304D /* LoginSignupChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupChoiceViewController.swift; sourceTree = "<group>"; };
 		C48A74681CAF17910085304D /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		C48A74691CAF17910085304D /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		C48A746A1CAF17910085304D /* ExpandedDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 			children = (
 				C48A74651CAF17910085304D /* CategoryTableViewController.swift */,
 				C48A74661CAF17910085304D /* CategoryDetailTableViewController.swift */,
-				C48A74671CAF17910085304D /* LoginSignupChoiceViewController.swift */,
 				C48A74681CAF17910085304D /* LoginSignupViewController.swift */,
 				C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */,
 				C42742E21CB73BA400B26F78 /* HistoryTableViewController.swift */,
@@ -401,7 +398,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48A74631CAF17860085304D /* FirebaseController.swift in Sources */,
-				C48A74711CAF17910085304D /* LoginSignupChoiceViewController.swift in Sources */,
 				C48A74721CAF17910085304D /* LoginSignupViewController.swift in Sources */,
 				C48A74741CAF17910085304D /* ExpandedDetailTableViewCell.swift in Sources */,
 				C46475531CB4796900C9F07E /* TextFieldsEffects.swift in Sources */,
