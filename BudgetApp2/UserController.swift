@@ -76,13 +76,17 @@ class UserController {
         
         FirebaseController.base.createUser(email, password: password) { (error, response) -> Void in
             
-            if let uid = response["uid"] as? String {
-                var user = User(name: name, uid: uid)
-                user.save()
-                
-                authenticateUser(email, password: password, completion: { (success, user) -> Void in
-                    completion(success: success, user: user)
-                })
+            if error == nil {
+                if let uid = response["uid"] as? String {
+                    var user = User(name: name, uid: uid)
+                    user.save()
+                    
+                    authenticateUser(email, password: password, completion: { (success, user) -> Void in
+                        completion(success: success, user: user)
+                    })
+                } else {
+                    completion(success: false, user: nil)
+                }
             } else {
                 completion(success: false, user: nil)
             }

@@ -12,6 +12,7 @@ let reuseIdentifier = "categoryCell"
 
 class CategoryTableViewController: UITableViewController, CategoryTableViewCellDelegate {
     
+    @IBOutlet var addNewCategoryButton: UIButton!
     // this is for the expanding cell
     var selectedIndexPath: NSIndexPath?
     var indexPaths: Array<NSIndexPath> = []
@@ -22,7 +23,13 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+//        navigationController?.navigationBar.barTintColor = UIColor(red:0.31, green:0.32, blue:0.38, alpha:1.0)
+        addNewCategoryButton.backgroundColor = UIColor(red:0.35, green:0.51, blue:0.20, alpha:1.0)
+        
+        CategoryController.fetchCategoryForName("Rent ") { (category) in
+            print(category)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,17 +38,9 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             
             loadCategories(currentUser)
             
-            let logo = UIImage(named: "NavLogo")
+            let logo = UIImage(named: "NavLogoGreySmall")
             let imageView = UIImageView(image:logo)
             self.navigationItem.titleView = imageView
-            
-            
-            //self.title = "money watcher"
-            
-            //self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-
-            //Set Font Size
-            //self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Bold", size: 25.0)!];
             
         } else {
             navigationController?.performSegueWithIdentifier("noCurrentUserSegue", sender:nil)
@@ -211,33 +210,28 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     
     func editButtonTapped(cell: CategoryTableViewCell) {
         if let indexPath = tableView.indexPathForCell(cell) {
-            let alert = UIAlertController(title: "Edit category", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Add New Budget", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             
             let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
             let save = UIAlertAction(title: "Save", style: UIAlertActionStyle.Default) { (action) -> Void in
                 if let textFields = alert.textFields,
-                    let name = textFields[0].text,
-                    let budgetText = textFields[1].text {
+                    let budgetText = textFields[0].text {
                     
                     let trimmedBudgetAmount = budgetText.stringByReplacingOccurrencesOfString("$", withString: "")
+                    guard let budgetAmount = Float(trimmedBudgetAmount) else { return }
                     
-                    let budgetAmount = Float(trimmedBudgetAmount)
                     
-                    
-                    CategoryController.updateCategory(self.categories[indexPath.row], name: name, budgetAmount: budgetAmount, isVisible: nil)
+                    CategoryController.updateCategory(self.categories[indexPath.row], budgetAmount: budgetAmount, notVisible: false)
                     
                 }
             }
             
             alert.addAction(cancel)
             alert.addAction(save)
-            
+        
             alert.addTextFieldWithConfigurationHandler { (nameField) -> Void in
-                nameField.placeholder = "Name (Optional)"
-            }
-            alert.addTextFieldWithConfigurationHandler { (nameField) -> Void in
-                nameField.placeholder = "Budget Amount (Optional)"
+                nameField.placeholder = "New Budget Amount "
             }
             
             presentViewController(alert, animated: true, completion: nil)
@@ -268,7 +262,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
             let okay = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
-                CategoryController.updateCategory(self.categories[indexPath.row], name: nil, budgetAmount: nil, isVisible: false)
+                CategoryController.updateCategory(self.categories[indexPath.row], budgetAmount: nil, notVisible: false)
                 
                 tableView.reloadData()
             })

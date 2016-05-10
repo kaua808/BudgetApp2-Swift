@@ -41,17 +41,6 @@ class LoginSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
-//        for parent in self.navigationController!.navigationBar.subviews {
-//            for childView in parent.subviews {
-//                if(childView is UIImageView) {
-//                    childView.removeFromSuperview()
-//                }
-//            }
-//        }
-        
         self.navigationController?.navigationBar.translucent = false
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
@@ -108,9 +97,6 @@ class LoginSignupViewController: UIViewController {
             if let user = self.user {
                 
                 usernameTextField.text = user.name
-
-
-                
             }
         }
     }

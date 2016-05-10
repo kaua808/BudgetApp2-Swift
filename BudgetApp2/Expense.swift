@@ -13,18 +13,25 @@ class Expense: Equatable, FirebaseType {
     private let kDate = "date"
     private let kPrice = "price"
     private let kComment = "comment"
-    private let kCategoryID = "categoryID"
+    private let kCategoryName = "categoryName"
     
     var date: NSDate
     var price: Float
     var comment: String
-    var categoryID: String
+    var categoryName: String
+    
+    lazy var category: Category = {
+        
+       CategoryController.fetchCategoryForName(self.categoryName, expense: self, completion: <#T##(category: Category?) -> Void#>)
+        
+    }()
+    
     var identifier: String?
     var endpoint: String {
         return "expense"
     }
     var jsonValue: [String: AnyObject] {
-        let json: [String: AnyObject] = [kDate: date.timeIntervalSince1970, kPrice: price, kComment: comment, kCategoryID: categoryID]
+        let json: [String: AnyObject] = [kDate: date.timeIntervalSince1970, kPrice: price, kComment: comment, kCategoryName: categoryName]
         
         return json
     }
@@ -34,12 +41,12 @@ class Expense: Equatable, FirebaseType {
         guard let dateInterval = json[kDate] as? NSTimeInterval,
             let price = json[kPrice] as? Float,
             let comment = json[kComment] as? String,
-            let categoryID = json[kCategoryID] as? String else {
+            let categoryName = json[kCategoryName] as? String else {
                 
                 self.date = NSDate()
                 self.price = 0
                 self.comment = ""
-                self.categoryID = ""
+                self.categoryName = ""
                 
                 return nil
         }
@@ -48,16 +55,16 @@ class Expense: Equatable, FirebaseType {
         self.price = price
         self.comment = comment
         self.identifier = identifier
-        self.categoryID = categoryID
+        self.categoryName = categoryName
         
     }
     
-    init(date: NSDate, price: Float, comment: String, categoryID: String) {
+    init(date: NSDate, price: Float, comment: String, categoryName: String) {
      
         self.date = date
         self.price = price
         self.comment = comment
-        self.categoryID = categoryID
+        self.categoryName = categoryName
         
     }
     

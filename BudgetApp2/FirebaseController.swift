@@ -11,7 +11,7 @@ import Firebase
 
 class FirebaseController {
     
-    static let base = Firebase(url: "https://budgetappkaleo.firebaseio.com")
+    static let base = Firebase(url: "https://testbudgetapp.firebaseio.com/")
     
     static func dataAtEndpoint(endpoint: String, completion: (data: AnyObject?) -> Void) {
         

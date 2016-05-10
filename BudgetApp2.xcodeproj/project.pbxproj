@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C42742E31CB73BA400B26F78 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42742E21CB73BA400B26F78 /* HistoryTableViewController.swift */; };
+		C45217DB1CCB66920085B8EA /* HistoryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45217DA1CCB66920085B8EA /* HistoryCategoryTableViewCell.swift */; };
+		C45217DD1CCB67740085B8EA /* MonethSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45217DC1CCB67740085B8EA /* MonethSectionHeaderTableViewCell.swift */; };
 		C464754F1CB42C6200C9F07E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */; };
 		C46475511CB4794A00C9F07E /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46475501CB4794A00C9F07E /* HoshiTextField.swift */; };
 		C46475531CB4796900C9F07E /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46475521CB4796900C9F07E /* TextFieldsEffects.swift */; };
@@ -72,6 +74,8 @@
 
 /* Begin PBXFileReference section */
 		C42742E21CB73BA400B26F78 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		C45217DA1CCB66920085B8EA /* HistoryCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		C45217DC1CCB67740085B8EA /* MonethSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonethSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		C464754E1CB42C6200C9F07E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C46475501CB4794A00C9F07E /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		C46475521CB4796900C9F07E /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				C48A74691CAF17910085304D /* CategoryTableViewCell.swift */,
 				C48A746A1CAF17910085304D /* ExpandedDetailTableViewCell.swift */,
 				C48A746B1CAF17910085304D /* ExpenseDetailTableViewCell.swift */,
+				C45217DC1CCB67740085B8EA /* MonethSectionHeaderTableViewCell.swift */,
+				C45217DA1CCB66920085B8EA /* HistoryCategoryTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -404,7 +410,9 @@
 				C48A747F1CAF17D40085304D /* UserController.swift in Sources */,
 				C48A74751CAF17910085304D /* ExpenseDetailTableViewCell.swift in Sources */,
 				C464754F1CB42C6200C9F07E /* SettingsTableViewController.swift in Sources */,
+				C45217DB1CCB66920085B8EA /* HistoryCategoryTableViewCell.swift in Sources */,
 				C42742E31CB73BA400B26F78 /* HistoryTableViewController.swift in Sources */,
+				C45217DD1CCB67740085B8EA /* MonethSectionHeaderTableViewCell.swift in Sources */,
 				C48A74641CAF17860085304D /* ExpandedTableViewDatasource.swift in Sources */,
 				C48A74211CAF16060085304D /* AppDelegate.swift in Sources */,
 				C46475511CB4794A00C9F07E /* HoshiTextField.swift in Sources */,

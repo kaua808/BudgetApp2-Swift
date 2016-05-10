@@ -8,27 +8,29 @@
 
 import UIKit
 
-class HistoryTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class HistoryTableViewController: UITableViewController {
 
     var user: User?
     
-    var years: [String] = []
+    var categories: [Category] = []
+    var expenses: [Expense] = []
+    
+    let monthArray = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    var categorizedExpenses: [String : [Expense]] = [:]
+    
     
     @IBOutlet var yearTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if user == nil {
-            user = UserController.sharedController.currentUser
+        
+        if let user = UserController.sharedController.currentUser {
+            loadCategories(user)
         }
         
-        for i in 1990 ..< 2025 {
-            let iString = String(i)
-            self.years.append(iString)
+        ExpenseController.fetchExpensesForHistory(2016) { (expenses) in
+            self.categorizedExpenses = expenses
         }
-        
-        //self.yearTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,25 +38,18 @@ class HistoryTableViewController: UITableViewController, UIPickerViewDataSource,
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func yearTextFieldTapped(sender: AnyObject) {
-     
-        
-        
-        
+    func loadCategories(user: User) {
+        CategoryController.fetchCategoriesForUSer(user) { (categories) -> Void in
+            if let categories = categories {
+                self.categories = categories.sort({$0.0.name < $0.1.name})
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+        }
     }
     
-    //MARK: - UIPickerView Protocol Methods
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.years.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.years[row]
-    }
+    // fectch all expenses for categories, sort through that more the month
     
     
     
@@ -62,58 +57,65 @@ class HistoryTableViewController: UITableViewController, UIPickerViewDataSource,
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return monthArray.count
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 1:
+            return CategoryController.sharedController.monthsArray[0].count
+        case 2:
+            return CategoryController.sharedController.monthsArray[1].count
+        case 3:
+            return CategoryController.sharedController.monthsArray[2].count
+        case 4:
+            return CategoryController.sharedController.monthsArray[3].count
+        case 5:
+            return CategoryController.sharedController.monthsArray[4].count
+        case 6:
+            return CategoryController.sharedController.monthsArray[5].count
+        case 7:
+            return CategoryController.sharedController.monthsArray[6].count
+        case 8:
+            return CategoryController.sharedController.monthsArray[7].count
+        case 9:
+            return CategoryController.sharedController.monthsArray[8].count
+        case 10:
+            return CategoryController.sharedController.monthsArray[9].count
+        case 11:
+            return CategoryController.sharedController.monthsArray[10].count
+        case 12:
+            return CategoryController.sharedController.monthsArray[11].count
+        default:
+            return 0
+        }
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("historyCategoryCell", forIndexPath: indexPath) as? HistoryCategoryTableViewCell
 
-        // Configure the cell...
+        let section = CategoryController.sharedController.monthsArray[indexPath.section]
+        let category = section[indexPath.row]
+        
+        //cell?.updateWithCategory(category)
+        
 
-        return cell
+        return cell ?? UITableViewCell()
     }
-    */
+ 
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCellWithIdentifier("monthSectionHeader") as! MonethSectionHeaderTableViewCell
+        
+        let month = monthArray[section]
+        
+        cell.monthLabel.text = month
+        
+        return cell.contentView
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+    
 
     /*
     // MARK: - Navigation

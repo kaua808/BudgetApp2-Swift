@@ -26,13 +26,6 @@ class ExpandedDetailTableViewCell: UITableViewCell {
     
     func updateWithExpense(expense: Expense) {
         
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.locale = NSLocale.currentLocale()
-//        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-//        dateFormatter.dateFormat = "dd MMM yyyy"
-//        
-//        let dateStringToNSDate: NSDate? = dateFormatter.dateFromString(expense.date)
-        
         let myDateFormatter = NSDateFormatter()
         myDateFormatter.dateFormat = "MM/dd"
         

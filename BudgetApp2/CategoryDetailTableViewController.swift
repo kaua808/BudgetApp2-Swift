@@ -20,15 +20,20 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     @IBOutlet var expenseDetailTableView: UITableView!
     @IBOutlet var myTableHeaderView: UIView!
     @IBOutlet var fillerView: UIView!
+    @IBOutlet var addButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fillerView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
-        myTableHeaderView.backgroundColor = UIColor(red:0.38, green:0.70, blue:0.16, alpha:1.0)
-        expenseHeaderView.backgroundColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
-        expenseDetailTableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
-        self.view.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        fillerView.backgroundColor = UIColor(red:0.99, green:1.00, blue:1.00, alpha:1.0)
+        myTableHeaderView.backgroundColor = UIColor(red:0.99, green:1.00, blue:1.00, alpha:1.0)
+        addButton.backgroundColor = UIColor(red:0.35, green:0.51, blue:0.20, alpha:1.0)
+        
+        expenseHeaderView.backgroundColor = UIColor(red:0.31, green:0.32, blue:0.38, alpha:1.0)
+        
+        expenseDetailTableView.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
+        
         
         
     // Dismiss Keybaord when view is touched
@@ -153,7 +158,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                 formatter.dateFormat = "dd MMM yyyy"
                 let formattedDate = formatter.dateFromString(date)
                 
-                ExpenseController.addNewExpense(formattedDate!, price: Float(price)!, comment: comment, categoryID: (category?.identifier)!, completion: { (success, expense) -> Bool in
+                ExpenseController.addNewExpense(formattedDate!, price: Float(price)!, comment: comment, categoryName: (category?.name)!, completion: { (success, expense) -> Bool in
                     
                     if expense != nil {
                         
@@ -183,8 +188,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         let expense = expenses[indexPath.row]
         
         cell.updateWithExpense(expense)
-        cell.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
-        tableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
+        cell.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
         
         return cell
     }
