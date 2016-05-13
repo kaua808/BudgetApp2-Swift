@@ -23,12 +23,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.navigationBar.barTintColor = UIColor(red:0.31, green:0.32, blue:0.38, alpha:1.0)
         addNewCategoryButton.backgroundColor = UIColor(red:0.35, green:0.51, blue:0.20, alpha:1.0)
-        
-        CategoryController.fetchCategoryForName("Rent ") { (category) in
-            print(category)
-        }
         
     }
     

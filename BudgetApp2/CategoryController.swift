@@ -10,17 +10,8 @@ import Foundation
 
 class CategoryController {
     
-    static let sharedController = CategoryController()
-    var monthsArray: [[Category]]
-    
-    init() {
-        
-        self.monthsArray = [[], [], [], [], [], [], [], [], [], [], [], []]
-        CategoryController.fetchCategoriesForUserByMonth(UserController.sharedController.currentUser)
-        
-    }
-    
-    //Add Category
+//    static var expensesByMonth: [[Expense]] = []
+//    static var categoriesArrayByMonth: [[String]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
     
     static func addNewCategory(name: String, budgetAmount: Float, completion: (success: Bool, category: Category?) -> Bool) {
         
@@ -104,11 +95,11 @@ class CategoryController {
         }
     }
     
-    static func fetchCategoryForName(name: String, expense: Expense, completion: (category: Category?) -> Void) {
+    static func fetchCategoryForExpense(expense: Expense, completion: (category: Category?) -> Void) {
         
         // fetch categories
         
-        FirebaseController.base.childByAppendingPath("category").queryOrderedByChild("name").queryEqualToValue(name).observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+        FirebaseController.base.childByAppendingPath("category").queryOrderedByChild("name").queryEqualToValue(expense.categoryName).observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
         
             if let categoryDictionaries = snapshot.value as? [String: AnyObject] {
                 
@@ -120,8 +111,9 @@ class CategoryController {
                 print(sortedCategories)
                 
                 let filteredCategories = sortedCategories.filter({ (category) -> Bool in
-                    return expense.date > category.createdDate
+                    return expense.date < category.createdDate
                 })
+                print(filteredCategories)
                 
                 completion(category: filteredCategories.first)
             }
@@ -130,31 +122,24 @@ class CategoryController {
         
     }
     
-    static func fetchCategoriesForUserByMonth(user: User) {
-        
-        FirebaseController.base.childByAppendingPath("category").queryOrderedByChild("userID").queryEqualToValue(user.identifier).observeEventType(.Value, withBlock: { (snapshot) -> Void in
-            
-            if let categoryDictionaries = snapshot.value as? [String: AnyObject] {
-                
-                let categories = categoryDictionaries.flatMap{Category(json: $0.1 as! [String : AnyObject], identifier: $0.0)}
-                for (index, _) in sharedController.monthsArray.enumerate() {
-                    sharedController.monthsArray[index] = categories.filter({ (category) -> Bool in
-                        let calendar = NSCalendar.currentCalendar()
-                        let createdMonthComponent = calendar.component(.Month, fromDate: category.createdDate)
-                        
-                        var endMonthComponent = 13
-                        if let endDate = category.deletedDate {
-                            endMonthComponent = calendar.component(.Month, fromDate: endDate)
-                        }
-                        if index >= createdMonthComponent && index <= endMonthComponent {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                }
-            }
-        })
-    }
+//    static func organizeCategoriesByMonth() -> [[String: [Expense]]] {
+//        var monthArray: [[String: [Expense]]] = [[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:]]
+//        for (index, _) in monthArray.enumerate() {
+//            let monthExpenses = expensesByMonth[index]
+//            for expense in monthExpenses {
+//                if var categoryMonthExpenses = monthArray[index][expense.categoryName] {
+//                    categoryMonthExpenses += [expense]
+//                    monthArray[index][expense.categoryName] = categoryMonthExpenses
+//                } else {
+//                    monthArray[index][expense.categoryName] = [expense]
+//                }
+//            }
+//        }
+//        categoriesArrayByMonth = []
+//        for month in monthArray {
+//            categoriesArrayByMonth.append(Array(month.keys))
+//        }
+//        return monthArray
+//    }
     
 }

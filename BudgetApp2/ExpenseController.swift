@@ -10,6 +10,8 @@ import Foundation
 
 class ExpenseController {
     
+    //static var categorizedExpenses: [String : [Expense]] = [:]
+    
     static func addNewExpense(date: NSDate, price: Float, comment: String, categoryName: String, completion: (success: Bool, expense: Expense?) -> Bool) {
         
         var newExpense = Expense(date: date, price: price, comment: comment, categoryName: categoryName)
@@ -85,12 +87,34 @@ class ExpenseController {
         return (firstDayOfTheYear.timeIntervalSince1970, lastDayOfTheYear.timeIntervalSince1970)
     }
     
+//    func organizeExpensesByMonth() -> [[Expense]] {
+//        let expenses = categorizedExpenses.flatMap {$0.1.flatMap {$0}}
+//        let group = dispatch_group_create()
+//        for expense in expenses {
+//            dispatch_group_enter(group)
+//            CategoryController.fetchCategoryForExpense(expense, completion: { (category) in
+//                expense.category = category
+//                dispatch_group_leave(group)
+//            })
+//        }
+//        dispatch_group_notify(group, dispatch_get_main_queue()) {
+//            self.tableView.reloadData()
+//        }
+//        var monthArray: [[Expense]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
+//        for (index, _) in monthArray.enumerate() {
+//            monthArray[index] += expenses.filter {$0.isCurrentYear && $0.month == index + 1}
+//        }
+//        return monthArray
+//    }
+    
     
     static func deleteExpense(expense: Expense) {
         
         expense.delete()
         
     }
+    
+    
     
 }
 

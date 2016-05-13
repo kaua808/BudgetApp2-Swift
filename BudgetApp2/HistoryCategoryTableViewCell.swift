@@ -11,6 +11,7 @@ import UIKit
 class HistoryCategoryTableViewCell: UITableViewCell {
 
     @IBOutlet var categoryNameLabel: UILabel!
+    @IBOutlet var budgetLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +29,14 @@ class HistoryCategoryTableViewCell: UITableViewCell {
         categoryNameLabel.text = category.name
         
         // add up value of expenses
+        var totalExpense = 0
         
-        // set label to \(value of expenses) / (category.budgetAmount)
+        for expense in expenses {
+            totalExpense += Int(expense.price)
+        }
+        
+        budgetLabel.text = "$\(totalExpense) / $\(category.budgetAmount)"
+        
     }
 
 }

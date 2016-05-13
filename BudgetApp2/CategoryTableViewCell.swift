@@ -106,7 +106,7 @@ class CategoryTableViewCell: UITableViewCell {
         self.progressView.transform = CGAffineTransformMakeScale(1, 13)
         self.progressView.layer.cornerRadius = 8
         self.progressView.progressTintColor = UIColor(red:0.35, green:0.51, blue:0.20, alpha:1.0)
-        self.progressView.trackTintColor = UIColor(red:0.41, green:0.51, blue:0.62, alpha:1.0)
+        //self.progressView.trackTintColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
         self.mainViewCell.backgroundColor = UIColor(red:0.99, green:1.00, blue:1.00, alpha:1.0)
         self.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
         self.addExpenseButton.alpha = 2

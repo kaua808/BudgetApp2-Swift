@@ -520,6 +520,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="budgetLabel" destination="tuc-PB-sob" id="AIc-XL-gRV"/>
                                     <outlet property="categoryNameLabel" destination="dWX-vZ-phf" id="Vq3-Z4-rX7"/>
                                 </connections>
                             </tableViewCell>
@@ -746,6 +747,21 @@
                                             <action selector="priceTextFieldTapped:" destination="MHV-eR-Pn5" eventType="editingDidBegin" id="ieu-ZI-Rfv"/>
                                         </connections>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-WI-FAC" userLabel="fillerView">
+                                        <rect key="frame" x="299" y="37" width="2" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="6ua-5o-Gs0"/>
+                                            <constraint firstAttribute="width" constant="35" id="dIF-Ne-LyU"/>
+                                            <constraint firstAttribute="width" constant="2" id="fsG-mU-0xn"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="6ua-5o-Gs0"/>
+                                                <exclude reference="dIF-Ne-LyU"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Comments..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrP-BS-c45" customClass="JiroTextField" customModule="BudgetApp2" customModuleProvider="target">
                                         <rect key="frame" x="50" y="87" width="500" height="50"/>
                                         <constraints>
@@ -860,21 +876,6 @@
                                             <constraint firstItem="Cb5-ch-JL9" firstAttribute="height" secondItem="oT1-MD-WHB" secondAttribute="height" id="lRp-mY-yGf"/>
                                             <constraint firstItem="Cb5-ch-JL9" firstAttribute="leading" secondItem="flz-BB-PVX" secondAttribute="trailing" id="xVz-A0-XMy"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-WI-FAC" userLabel="fillerView">
-                                        <rect key="frame" x="299" y="37" width="2" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="6ua-5o-Gs0"/>
-                                            <constraint firstAttribute="width" constant="35" id="dIF-Ne-LyU"/>
-                                            <constraint firstAttribute="width" constant="2" id="fsG-mU-0xn"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="6ua-5o-Gs0"/>
-                                                <exclude reference="dIF-Ne-LyU"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

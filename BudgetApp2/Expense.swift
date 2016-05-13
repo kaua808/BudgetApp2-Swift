@@ -19,12 +19,22 @@ class Expense: Equatable, FirebaseType {
     var price: Float
     var comment: String
     var categoryName: String
+    let calendar: NSCalendar = NSCalendar.currentCalendar()
+    var year: Int {
+        let component = calendar.component(.Year, fromDate: date)
+        return component
+    }
     
-    lazy var category: Category = {
-        
-       CategoryController.fetchCategoryForName(self.categoryName, expense: self, completion: <#T##(category: Category?) -> Void#>)
-        
-    }()
+    var month: Int {
+        let month = calendar.component(.Month, fromDate: date)
+        return month
+    }
+    
+    var isCurrentYear: Bool {
+        let currentYear = calendar.component(.Year, fromDate: NSDate())
+        return currentYear == year
+    }
+    var category: Category?
     
     var identifier: String?
     var endpoint: String {
@@ -60,7 +70,7 @@ class Expense: Equatable, FirebaseType {
     }
     
     init(date: NSDate, price: Float, comment: String, categoryName: String) {
-     
+        
         self.date = date
         self.price = price
         self.comment = comment

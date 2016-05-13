@@ -178,6 +178,26 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     
     // MARK: TableViewDataSource
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        if expenses.count > 0{
+            tableView.backgroundView = nil
+            return 1
+        } else {
+            let label = UILabel(frame: CGRectMake(0, 0 , tableView.bounds.size.width - 20, tableView.bounds.size.height))
+            label.text = "Add expenses"
+            label.textColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
+            label.numberOfLines = 0
+            label.textAlignment = .Center
+            label.font = UIFont.systemFontOfSize(25, weight: UIFontWeightLight)
+            label.sizeToFit()
+            tableView.backgroundView = label
+            tableView.backgroundColor = UIColor(red:0.99, green:1.00, blue:1.00, alpha:1.0)
+            //tableView.separatorStyle = UITableViewCellSeparatorStyleNone
+        }
+        return 1
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
     }
