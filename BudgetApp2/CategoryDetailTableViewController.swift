@@ -21,6 +21,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     @IBOutlet var myTableHeaderView: UIView!
     @IBOutlet var fillerView: UIView!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var emptyTableViewLine: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         addButton.backgroundColor = UIColor(red:0.35, green:0.51, blue:0.20, alpha:1.0)
         
         expenseHeaderView.backgroundColor = UIColor(red:0.31, green:0.32, blue:0.38, alpha:1.0)
+        emptyTableViewLine.backgroundColor = UIColor(red:0.31, green:0.32, blue:0.38, alpha:1.0)
         
         expenseDetailTableView.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
         self.view.backgroundColor = UIColor(red:0.68, green:0.74, blue:0.22, alpha:1.0)
@@ -72,6 +74,7 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.expenseDetailTableView.reloadData()
                         self.expenseHeaderView.hidden = false
+                        self.emptyTableViewLine.hidden = true
                     })
                 }
             }
