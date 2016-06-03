@@ -23,7 +23,7 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet var cangeViewModeLabel: UILabel!
     @IBOutlet var changeViewModeButton: UIButton!
     
-    var viewMode = ViewMode.Signup
+    var viewMode = ViewMode.Login
     var fieldsAreValid: Bool {
         get {
             switch viewMode {

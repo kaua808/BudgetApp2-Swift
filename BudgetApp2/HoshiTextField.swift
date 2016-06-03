@@ -70,6 +70,14 @@ import UIKit
         }
     }
     
+    override public var hidden: Bool {
+        didSet {
+            if hidden == true {
+                drawViewsForRect(self.frame)
+            }
+        }
+    }
+    
     private let borderThickness: (active: CGFloat, inactive: CGFloat) = (active: 2, inactive: 0.5)
     private let placeholderInsets = CGPoint(x: 0, y: 6)
     private let textFieldInsets = CGPoint(x: 0, y: 12)

@@ -35,14 +35,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             let imageView = UIImageView(image:logo)
             self.navigationItem.titleView = imageView
             
-            
-            //self.title = "money watcher"
-            
-            //self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-
-            //Set Font Size
-            //self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Bold", size: 25.0)!];
-            
         } else {
             navigationController?.performSegueWithIdentifier("noCurrentUserSegue", sender:nil)
         }
