@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class HistoryTableViewController: UITableViewController {
 
     var user: User?
@@ -15,12 +17,11 @@ class HistoryTableViewController: UITableViewController {
     var categories: [Category] = []
     var expenses: [Expense] = []
     
-    let monthArray = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    var categorizedExpenses: [String : [Expense]] = [:]
-    var expensesByMonth: [[Expense]] = []
-    var categoriesByMonth: [[String: [Expense]]] = [[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:]]
+    let monthArray = NSCalendar.currentCalendar().monthSymbols
     
-    var categoriesArrayByMonth: [[String]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
+    var categorizedExpenseList: CategorizedExpenseList?
+    
+    var categorizedExpenses: [CategorizedExpenses]?
     
     @IBOutlet var yearTextField: UITextField!
     
@@ -32,50 +33,25 @@ class HistoryTableViewController: UITableViewController {
         }
         
         ExpenseController.fetchExpensesForHistory(2016) { (expenses) in
-            self.categorizedExpenses = expenses
-            self.expensesByMonth = self.organizeExpensesByMonth()
-            self.categoriesByMonth = self.organizeCategoriesByMonth()
-        }
-    }
-    
-    func organizeExpensesByMonth() -> [[Expense]] {
-        let expenses = categorizedExpenses.flatMap {$0.1.flatMap {$0}}
-        let group = dispatch_group_create()
-        for expense in expenses {
-            dispatch_group_enter(group)
-            CategoryController.fetchCategoryForExpense(expense, completion: { (category) in
-                expense.category = category
-                dispatch_group_leave(group)
-            })
-        }
-        dispatch_group_notify(group, dispatch_get_main_queue()) { 
+            
+            var fetchedExpenses: [Expense] = []
+            
+            for (_, value) in expenses {
+                fetchedExpenses.appendContentsOf(value)
+            }
+            
+            let fullCategorizedExpenseList: CategorizedExpenseList = ExpenseController.expensesGroupedByCategoryAndDate(fetchedExpenses, selectedYear: 2016)!
+            
+            var categorizedExpenses: [CategorizedExpenses] = []
+            
+            for (_, value) in fullCategorizedExpenseList {
+                categorizedExpenses.append(value)
+            }
+            
+            self.categorizedExpenses = categorizedExpenses
+            
             self.tableView.reloadData()
         }
-        var monthArray: [[Expense]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
-        for (index, _) in monthArray.enumerate() {
-            monthArray[index] += expenses.filter {$0.isCurrentYear && $0.month == index + 1}
-        }
-        return monthArray
-    }
-    
-    func organizeCategoriesByMonth() -> [[String: [Expense]]] {
-        var monthArray: [[String: [Expense]]] = [[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:]]
-        for (index, _) in monthArray.enumerate() {
-            let monthExpenses = expensesByMonth[index]
-            for expense in monthExpenses {
-                if var categoryMonthExpenses = monthArray[index][expense.categoryName] {
-                    categoryMonthExpenses += [expense]
-                    monthArray[index][expense.categoryName] = categoryMonthExpenses
-                } else {
-                    monthArray[index][expense.categoryName] = [expense]
-                }
-            }
-        }
-        categoriesArrayByMonth = []
-        for month in monthArray {
-            categoriesArrayByMonth.append(Array(month.keys))
-        }
-        return monthArray
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,27 +77,44 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return monthArray.count
         
+        return categorizedExpenseList?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         
-        return categoriesArrayByMonth[section].count
+
+        // number of categories in a month
+        
+        let key = categorizedExpenseList?.keys[section]
+        
+        return categorizedExpenseList?[key]?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCategoryCell", forIndexPath: indexPath) as? HistoryCategoryTableViewCell
 
-        let categoryName = categoriesArrayByMonth[indexPath.section][indexPath.row]
-        let expenses = categoriesByMonth[indexPath.section][categoryName] ?? []
-        guard let category = expenses.first?.category else {return UITableViewCell()}
+        // filter self.categorizedExpenses by date
+        // get expense at index path
+        // set up cell
+//        
+//        let categoryName = categoriesArrayByMonth[indexPath.section][indexPath.row]
+//        let expenses = categoriesByMonth[indexPath.section][categoryName] ?? []
+//        guard let category = expenses.first?.category else {return UITableViewCell()}
+//        
+//        cell?.updateWithCategoryAndExpenses(category, expenses: expenses)
         
-        cell?.updateWithCategoryAndExpenses(category, expenses: expenses)
+        let month = monthArray[indexPath.section]
+        let categoryName = categorizedExpenseList?[month]?.first?.0
+        let expenses = categorizedExpenseList?[month]?.first?.1
         
-
+        if let categoryName = categoryName,
+            let category = self.categories.filter({ $0.name == categoryName }).last,
+            let expenses = expenses {
+            
+            cell?.updateWithCategoryAndExpenses(category, expenses: expenses)
+        }
+        
         return cell ?? UITableViewCell()
     }
  
@@ -140,6 +133,50 @@ class HistoryTableViewController: UITableViewController {
         return 50
     }
     
+    
+    
+//    func organizeExpensesByMonth() -> [[Expense]] {
+//        let expenses = categorizedExpenses.flatMap {$0.1.flatMap {$0}}
+//        
+//        
+//        let group = dispatch_group_create()
+//        for expense in expenses {
+//            dispatch_group_enter(group)
+//            CategoryController.fetchCategoryForExpense(expense, completion: { (category) in
+//                expense.category = category
+//                dispatch_group_leave(group)
+//            })
+//        }
+//        dispatch_group_notify(group, dispatch_get_main_queue()) {
+//            self.tableView.reloadData()
+//        }
+//        var monthArray: [[Expense]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
+//        for (index, _) in monthArray.enumerate() {
+//            monthArray[index] += expenses.filter {$0.isCurrentYear && $0.month == index + 1}
+//        }
+//        return monthArray
+//    }
+//    
+//    func organizeCategoriesByMonth() -> [[String: [Expense]]] {
+//        var monthArray: [[String: [Expense]]] = [[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:],[:]]
+//        for (index, _) in monthArray.enumerate() {
+//            let monthExpenses = expensesByMonth[index]
+//            for expense in monthExpenses {
+//                if var categoryMonthExpenses = monthArray[index][expense.categoryName] {
+//                    categoryMonthExpenses += [expense]
+//                    monthArray[index][expense.categoryName] = categoryMonthExpenses
+//                } else {
+//                    monthArray[index][expense.categoryName] = [expense]
+//                }
+//            }
+//        }
+//        categoriesArrayByMonth = []
+//        for month in monthArray {
+//            categoriesArrayByMonth.append(Array(month.keys))
+//        }
+//        return monthArray
+//    }
+//    
 
     /*
     // MARK: - Navigation

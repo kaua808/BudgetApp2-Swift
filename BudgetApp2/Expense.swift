@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Expense: Equatable, FirebaseType {
+class Expense: Equatable, CustomStringConvertible , FirebaseType {
     
     private let kDate = "date"
     private let kPrice = "price"
@@ -23,6 +23,11 @@ class Expense: Equatable, FirebaseType {
     var year: Int {
         let component = calendar.component(.Year, fromDate: date)
         return component
+    }
+    
+    var description: String {
+        
+        return "\(comment) on \(date)"
     }
     
     var month: Int {

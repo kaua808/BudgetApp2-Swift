@@ -6,6 +6,11 @@
 //  Copyright © 2016 Kaleo Kim. All rights reserved.
 //
 
+typealias MonthName = String
+typealias CategoryName = String
+typealias CategorizedExpenses = [CategoryName: [Expense]]
+typealias CategorizedExpenseList = [MonthName: CategorizedExpenses]
+
 import Foundation
 
 class ExpenseController {
@@ -80,32 +85,33 @@ class ExpenseController {
         formatter.dateFormat = "yyyy"
         
         guard let formattedYear = formatter.dateFromString(String(year)),
-        let firstDayOfTheYear = NSCalendar.currentCalendar().dateWithEra(1, year: NSCalendar.currentCalendar().component(.Year, fromDate: formattedYear), month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0),
+            let firstDayOfTheYear = NSCalendar.currentCalendar().dateWithEra(1, year: NSCalendar.currentCalendar().component(.Year, fromDate: formattedYear), month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0),
             let lastDayOfTheYear = NSCalendar.currentCalendar().dateWithEra(1, year: NSCalendar.currentCalendar().component(.Year, fromDate: formattedYear), month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 0) else {
-            return nil
+                return nil
         }
         return (firstDayOfTheYear.timeIntervalSince1970, lastDayOfTheYear.timeIntervalSince1970)
     }
     
-//    func organizeExpensesByMonth() -> [[Expense]] {
-//        let expenses = categorizedExpenses.flatMap {$0.1.flatMap {$0}}
-//        let group = dispatch_group_create()
-//        for expense in expenses {
-//            dispatch_group_enter(group)
-//            CategoryController.fetchCategoryForExpense(expense, completion: { (category) in
-//                expense.category = category
-//                dispatch_group_leave(group)
-//            })
-//        }
-//        dispatch_group_notify(group, dispatch_get_main_queue()) {
-//            self.tableView.reloadData()
-//        }
-//        var monthArray: [[Expense]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
-//        for (index, _) in monthArray.enumerate() {
-//            monthArray[index] += expenses.filter {$0.isCurrentYear && $0.month == index + 1}
-//        }
-//        return monthArray
-//    }
+    
+    //    func organizeExpensesByMonth() -> [[Expense]] {
+    //        let expenses = categorizedExpenses.flatMap {$0.1.flatMap {$0}}
+    //        let group = dispatch_group_create()
+    //        for expense in expenses {
+    //            dispatch_group_enter(group)
+    //            CategoryController.fetchCategoryForExpense(expense, completion: { (category) in
+    //                expense.category = category
+    //                dispatch_group_leave(group)
+    //            })
+    //        }
+    //        dispatch_group_notify(group, dispatch_get_main_queue()) {
+    //            self.tableView.reloadData()
+    //        }
+    //        var monthArray: [[Expense]] = [[],[],[],[],[],[],[],[],[],[],[],[]]
+    //        for (index, _) in monthArray.enumerate() {
+    //            monthArray[index] += expenses.filter {$0.isCurrentYear && $0.month == index + 1}
+    //        }
+    //        return monthArray
+    //    }
     
     
     static func deleteExpense(expense: Expense) {
@@ -114,8 +120,95 @@ class ExpenseController {
         
     }
     
+    static func expensesGroupedByCategoryAndDate(expenses: [Expense], selectedYear: Int) -> CategorizedExpenseList? {
+        
+        // filter by category
+        
+        let categories = Set(expenses.flatMap({ $0.categoryName as CategoryName }))
+        
+        print(categories)
+        
+        var categoryDictionary: CategorizedExpenseList = [:]
+        
+        // get the expenses for that category
+        // limit expenses by month
+        // month start date
+        // month end date
+        // filter expenses for those between start and end dates
+        // return in [MonthName: [Expense]] format
+        
+        for category in categories {
+            
+            let categoryExpenses = expenses.filter({ $0.categoryName == category })
+            
+            for monthIndex in 1...12 {
+                
+                let monthName = NSCalendar.currentCalendar().monthSymbols[monthIndex-1]
+                
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "yyyy"
+                
+                if let currentYear = formatter.dateFromString(String(selectedYear)),
+                    let dateInMonth = NSCalendar.currentCalendar().dateWithEra(1, year: NSCalendar.currentCalendar().component(.Year, fromDate: currentYear), month: monthIndex, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0),
+                    let monthStart = dateInMonth.startOfMonth(),
+                    let monthEnd = dateInMonth.endOfMonth()
+                {
+                    
+                    let expensesForMonthInCategory = categoryExpenses.filter({ monthStart < $0.date && $0.date < monthEnd })
+                    
+                    if !expensesForMonthInCategory.isEmpty {
+                     
+                        let categorizedExpenses = [category: expensesForMonthInCategory] as CategorizedExpenses
+                        
+                        if categoryDictionary[monthName] != nil {
+                            
+                            categoryDictionary[monthName]?.updateValue(expensesForMonthInCategory, forKey: category)
+                        } else {
+                            
+                            categoryDictionary.updateValue(categorizedExpenses, forKey: monthName)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return categoryDictionary
+    }
+}
+
+extension NSDate {
     
+    func startOfMonth() -> NSDate? {
+        
+        let calendar = NSCalendar.currentCalendar()
+        let currentDateComponents = calendar.components([.Year, .Month], fromDate: self)
+        let startOfMonth = calendar.dateFromComponents(currentDateComponents)
+        
+        return startOfMonth
+    }
     
+    func dateByAddingMonths(monthsToAdd: Int) -> NSDate? {
+        
+        let calendar = NSCalendar.currentCalendar()
+        let months = NSDateComponents()
+        months.month = monthsToAdd
+        
+        return calendar.dateByAddingComponents(months, toDate: self, options: .MatchFirst)
+    }
+    
+    func endOfMonth() -> NSDate? {
+        
+        let calendar = NSCalendar.currentCalendar()
+        if let plusOneMonthDate = dateByAddingMonths(1) {
+            let plusOneMonthDateComponents = calendar.components([.Year, .Month], fromDate: plusOneMonthDate)
+            
+            let endOfMonth = calendar.dateFromComponents(plusOneMonthDateComponents)?.dateByAddingTimeInterval(-1)
+            
+            return endOfMonth
+        }
+        
+        return nil
+    }
 }
 
 public func <(a: NSDate, b: NSDate) -> Bool {

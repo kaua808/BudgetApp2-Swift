@@ -52,6 +52,7 @@ class CategoryController {
         })
     }
     
+    
     // Edit a Category
     
     static func updateCategory(category: Category, budgetAmount: Float?, notVisible: Bool) {
