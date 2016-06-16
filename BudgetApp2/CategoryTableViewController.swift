@@ -272,11 +272,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             
         }
     }
-    
-    
-    
-
-    
 }
 
 extension CategoryTableViewController: UITextFieldDelegate {

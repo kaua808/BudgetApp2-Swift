@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
         var user: User?
     
@@ -41,11 +42,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 1 {
-            return 2
-        } else {
-            return 1
-        }
+        return 1
     }
 
     /*
@@ -73,17 +70,28 @@ class SettingsTableViewController: UITableViewController {
                 
             }
         case 1 :
-            if indexPath.row == 0 {
-                print("moneywatch website")
-            } else {
-                print("icon 8 website")
-            }
+            showMailForFeedback()
         case 2 :
-            print("app store rating")
+            UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/us/app/money-watch-month-to-month/id1099329001?mt=8")!)
         default :
             print("my website")
         }
         
+    }
+    
+    func showMailForFeedback() {
+        let feedbackViewController = MFMailComposeViewController()
+        
+        feedbackViewController.setToRecipients(["moneywatchbudgetapp@gmail.com"])
+        feedbackViewController.setSubject("Hey MoneyWatch!")
+        feedbackViewController.setMessageBody("Dear MoneyWatch,", isHTML: false)
+        feedbackViewController.mailComposeDelegate = self
+        
+        presentViewController(feedbackViewController, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
