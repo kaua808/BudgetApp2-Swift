@@ -55,16 +55,12 @@ class CategoryTableViewCell: UITableViewCell {
     }
     
     func updateProgressView(expensTotal: Float, category: Category) {
-        
-        //let moneySpent = category.budgetAmount - expensTotal
-        
+
         let progress = Float(expensTotal) / Float(category.budgetAmount)
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.progressView.setProgress(progress, animated: false)
         })
-        
-        
     }
     
     func updateWithCategory(category: Category, shouldReload: Bool) {
@@ -99,7 +95,6 @@ class CategoryTableViewCell: UITableViewCell {
                 self.progressView.progress = 0
                 self.expenseSummeryLabel.text = "$0 / $\(category.budgetAmount)"
             }
-            
         }
         
         self.categoryTitleLabel.text = category.name
@@ -117,14 +112,11 @@ class CategoryTableViewCell: UITableViewCell {
     @IBAction func editButtonTapped(sender: AnyObject) {
         
         delegate?.editButtonTapped(self)
-        
     }
-    
-    
+
     @IBAction func addExpenseButtonTapped(sender: AnyObject) {
         
         delegate?.expenseButtonTapped(self)
-        
     }
 }
 
@@ -133,7 +125,6 @@ protocol CategoryTableViewCellDelegate {
     func expenseButtonTapped(cell: CategoryTableViewCell)
     
     func editButtonTapped(cell: CategoryTableViewCell)
-    
 }
 
 

@@ -40,7 +40,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         }
     }
     
-    
     func loadCategories(user: User) {
         CategoryController.fetchCategoriesForUSer(user) { (categories) -> Void in
             if let categories = categories {
@@ -102,7 +101,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         }
         
         presentViewController(alert, animated: true, completion: nil)
-        
     }
     
     // MARK: - Expanding Cell Stuff
@@ -126,9 +124,7 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
         if indexPaths.count > 0 {
             
             tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-            
         }
-        
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -234,7 +230,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             
             presentViewController(alert, animated: true, completion: nil)
         }
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -269,7 +264,6 @@ class CategoryTableViewController: UITableViewController, CategoryTableViewCellD
             alert.addAction(cancel)
             
             self.presentViewController(alert, animated: true, completion: nil)
-            
         }
     }
 }
@@ -280,5 +274,4 @@ extension CategoryTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }

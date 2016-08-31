@@ -15,19 +15,16 @@ class UserController {
     static let sharedController = UserController()
     
     var currentUser: User! {
+        
         get {
-            
             guard let uid = FirebaseController.base.authData?.uid,
                 let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
-                    
                     return nil
             }
-            
             return User(json: userDictionary, identifier: uid)
         }
         
         set {
-            
             if let newValue = newValue {
                 NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
                 NSUserDefaults.standardUserDefaults().synchronize()
@@ -108,5 +105,4 @@ class UserController {
         FirebaseController.base.unauth()
         UserController.sharedController.currentUser = nil
     }
-    
 }

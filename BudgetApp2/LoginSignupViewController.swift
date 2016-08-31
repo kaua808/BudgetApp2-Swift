@@ -24,6 +24,7 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet var changeViewModeButton: UIButton!
     
     var viewMode = ViewMode.Login
+    
     var fieldsAreValid: Bool {
         get {
             switch viewMode {
@@ -40,17 +41,6 @@ class LoginSignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.51, green:0.55, blue:0.51, alpha:1.0)
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
-//        for parent in self.navigationController!.navigationBar.subviews {
-//            for childView in parent.subviews {
-//                if(childView is UIImageView) {
-//                    childView.removeFromSuperview()
-//                }
-//            }
-//        }
         
         self.navigationController?.navigationBar.translucent = false
         let img = UIImage()
@@ -69,11 +59,6 @@ class LoginSignupViewController: UIViewController {
         self.passwordTextField.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func changeViewModeTapped(sender: AnyObject) {
         
         if viewMode == ViewMode.Login {
@@ -85,9 +70,10 @@ class LoginSignupViewController: UIViewController {
             
             updateViewBasedOnMode()
         }
-        
     }
+    
     func updateViewBasedOnMode() {
+        
         switch viewMode {
         case .Login:
             usernameTextField.hidden = true
@@ -101,21 +87,18 @@ class LoginSignupViewController: UIViewController {
             changeViewModeButton.setTitle("Login here", forState: .Normal)
         case .Edit:
             actionButton.setTitle("Update", forState: .Normal)
-            
             emailTextField.hidden = true
             passwordTextField.hidden = true
             
             if let user = self.user {
                 
                 usernameTextField.text = user.name
-
-
-                
             }
         }
     }
     
     func updateWithUser(user: User) {
+        
         self.user = user
         viewMode = .Edit
     }
@@ -153,7 +136,6 @@ class LoginSignupViewController: UIViewController {
         } else {
             presentValidationAlertWithTitle("Missing Information", message: "Please check your information and try again.")
         }
-        
     }
     
     func presentValidationAlertWithTitle(title: String, message:String) {
@@ -163,18 +145,6 @@ class LoginSignupViewController: UIViewController {
         
         presentViewController(alert, animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension LoginSignupViewController: UITextFieldDelegate {
@@ -183,5 +153,4 @@ extension LoginSignupViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }

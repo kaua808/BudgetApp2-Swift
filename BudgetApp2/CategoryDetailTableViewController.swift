@@ -30,7 +30,6 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
         expenseDetailTableView.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         self.view.backgroundColor = UIColor(red:0.95, green:0.97, blue:0.91, alpha:1.0)
         
-        
     // Dismiss Keybaord when view is touched
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(didTapView))
@@ -76,7 +75,6 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     @IBAction func priceTextFieldTapped(sender: UITextField) {
         
         sender.inputAccessoryView = doneButtonToolbar(sender)
-        
     }
     // Make the DatePicker comeup for the dat input field
     
@@ -162,7 +160,6 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
                     } else {
                         return false
                     }
-                    
                 })
             }
             self.dateTextField.text = ""
@@ -174,10 +171,12 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     // MARK: TableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return expenses.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = expenseDetailTableView.dequeueReusableCellWithIdentifier("expenseDetailCell", forIndexPath: indexPath) as! ExpenseDetailTableViewCell
         
         let expense = expenses[indexPath.row]
@@ -190,17 +189,13 @@ class CategoryDetailTableViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             ExpenseController.deleteExpense(expenses[indexPath.row])
             expenses.removeAtIndex(indexPath.row)
-            
-            //tableView.reloadData()
-            
-            
         }
     }
-    
 }
 
 extension CategoryDetailTableViewController: UITextFieldDelegate {
@@ -209,5 +204,4 @@ extension CategoryDetailTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }

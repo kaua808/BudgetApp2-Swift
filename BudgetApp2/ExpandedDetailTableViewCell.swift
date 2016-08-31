@@ -15,23 +15,13 @@ class ExpandedDetailTableViewCell: UITableViewCell {
     @IBOutlet var commentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func updateWithExpense(expense: Expense) {
-        
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.locale = NSLocale.currentLocale()
-//        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-//        dateFormatter.dateFormat = "dd MMM yyyy"
-//        
-//        let dateStringToNSDate: NSDate? = dateFormatter.dateFromString(expense.date)
         
         let myDateFormatter = NSDateFormatter()
         myDateFormatter.dateFormat = "MM/dd"
@@ -39,7 +29,5 @@ class ExpandedDetailTableViewCell: UITableViewCell {
         self.dateLabel.text = myDateFormatter.stringFromDate(expense.date)
         self.priceLabel.text = "$\(expense.price)"
         self.commentLabel.text = expense.comment
-        
     }
-
 }
